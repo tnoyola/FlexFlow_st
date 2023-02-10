@@ -110,6 +110,8 @@ def top_level_task():
         batch_size=batch_size, seq_length=seq_length,
     )
     output_tensors = hf_model.torch_to_ff(ffmodel, input_tensors, verbose=True)
+    #hf_model.torch_to_file("mt5.ff")
+    print('tensor constant', model._tensor_constant0)
     ffoptimizer = SGDOptimizer(ffmodel, lr=0.01)
 
     print("Compiling the model...")

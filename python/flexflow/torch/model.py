@@ -2443,6 +2443,20 @@ class PyTorchModel():
         else:
             traced = torch.fx.symbolic_trace(self.model)
 
+        #import pickle
+        #with open('symbolic_trace', 'wb') as f:
+         #   pickle.dump(traced, f)
+
+        #with open('symbolic_trace', 'rb') as f:
+         #   traced = pickle.load(f)
+          #  print(traced.graph)
+            #assert(False)
+
+        with open('traced', 'wb') as f:
+            f.write(traced.recompile().src)
+        #folder='symbolic_trace_dir'
+        #traced.to_folder(folder, module_name='symbolic_trace_module')
+
         # Convert the fx graph to an internal graph representation
         name_to_module = {}
         for name, module in self.model.named_modules():
